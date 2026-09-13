@@ -2,8 +2,6 @@ import { PERSONAL_BUDGET } from '../data/militaryData';
 
 interface BudgetSliderProps {
   amount: number;
-  checked: boolean;
-  onToggleConfirm: () => void;
   onLiveChange: (value: number) => void;
   onCommit: (value: number) => void;
 }
@@ -12,42 +10,14 @@ function formatVND(amount: number): string {
   return `${amount.toLocaleString('vi-VN')}₫`;
 }
 
-export function BudgetSlider({
-  amount,
-  checked,
-  onToggleConfirm,
-  onLiveChange,
-  onCommit,
-}: BudgetSliderProps) {
+export function BudgetSlider({ amount, onLiveChange, onCommit }: BudgetSliderProps) {
   const isLow = amount <= PERSONAL_BUDGET.lowThreshold;
   const isHigh = amount >= PERSONAL_BUDGET.highThreshold;
 
   return (
     <div className="rounded-lg border border-military/15 bg-white p-3">
-      <label
-        htmlFor="cost-personal-confirm"
-        className="flex min-h-[44px] cursor-pointer items-start gap-3"
-      >
-        <input
-          id="cost-personal-confirm"
-          type="checkbox"
-          checked={checked}
-          onChange={onToggleConfirm}
-          className="mt-1 h-6 w-6 shrink-0 accent-military"
-        />
-        <span
-          className={
-            checked
-              ? 'min-w-0 flex-1 break-words font-medium text-charcoal/50 line-through'
-              : 'min-w-0 flex-1 break-words font-medium text-charcoal'
-          }
-        >
-          {PERSONAL_BUDGET.label}
-        </span>
-      </label>
-
-      <div className="mt-1 flex items-center justify-between gap-2">
-        <span className="text-sm text-charcoal/60">Tự chọn số tiền mang theo</span>
+      <div className="flex items-center justify-between gap-2">
+        <span className="font-medium text-charcoal">{PERSONAL_BUDGET.label}</span>
         <span className="shrink-0 font-semibold text-military">{formatVND(amount)}</span>
       </div>
 

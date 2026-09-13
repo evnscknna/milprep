@@ -74,7 +74,7 @@ export function Slide4RecommendedGear() {
         percent={overallPercent}
       />
 
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex gap-2">
         {GEAR_CATEGORIES.map((category) => {
           const Icon = ICONS[category.icon];
           const isActive = category.id === activeCategoryId;
@@ -83,14 +83,16 @@ export function Slide4RecommendedGear() {
               key={category.id}
               type="button"
               onClick={() => setActiveCategoryId(category.id)}
+              aria-label={category.title}
+              aria-pressed={isActive}
               className={
                 isActive
-                  ? 'flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-military px-4 py-2 font-medium text-white'
-                  : 'flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border border-military/25 px-4 py-2 font-medium text-military'
+                  ? 'flex min-h-[44px] min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-military px-3 py-2 font-medium text-white'
+                  : 'flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-military/25 text-military transition-colors hover:bg-military/5'
               }
             >
-              <Icon size={18} />
-              {category.title}
+              <Icon size={18} className="shrink-0" />
+              {isActive && <span className="truncate">{category.title}</span>}
             </button>
           );
         })}

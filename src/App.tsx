@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import {
   BANNED_ACK_ITEMS,
   BORROWED_GEAR_SECTION,
-  COST_CONFIRM_ITEMS,
   FIRST_DAY_PURCHASE_SECTION,
   PACKING_SECTION_A,
   SLIDES,
@@ -24,7 +23,6 @@ function App() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [pendingSlide, setPendingSlide] = useState<number | null>(null);
 
-  const costConfirm = useChecklistStorage('cost-confirm', COST_CONFIRM_ITEMS);
   const packingHome = useChecklistStorage(PACKING_SECTION_A.sectionId, PACKING_SECTION_A.items);
   const borrowedGear = useChecklistStorage(
     BORROWED_GEAR_SECTION.sectionId,
@@ -36,19 +34,12 @@ function App() {
   );
   const bannedAck = useChecklistStorage('banned-ack', BANNED_ACK_ITEMS);
 
-  const isSlide2Complete = COST_CONFIRM_ITEMS.every((item) => costConfirm.isChecked(item.id));
   const requiredHomeItems = PACKING_SECTION_A.items.filter((item) => !item.skippableInGate);
   const isSlide3Complete = requiredHomeItems.every((item) => packingHome.isChecked(item.id));
   const isSlide5Complete = BANNED_ACK_ITEMS.every((item) => bannedAck.isChecked(item.id));
 
   const gateSatisfied =
-    currentSlide === 2
-      ? isSlide2Complete
-      : currentSlide === 3
-        ? isSlide3Complete
-        : currentSlide === 5
-          ? isSlide5Complete
-          : true;
+    currentSlide === 3 ? isSlide3Complete : currentSlide === 5 ? isSlide5Complete : true;
 
   const goToSlide = useCallback((next: number) => {
     setCurrentSlide(Math.min(Math.max(next, 1), SLIDES.length));
@@ -89,7 +80,7 @@ function App() {
       case 'location':
         return <Slide1Location />;
       case 'cost':
-        return <Slide2CostInfo checklist={costConfirm} />;
+        return <Slide2CostInfo />;
       case 'packing':
         return (
           <Slide3PackingChecklist

@@ -78,15 +78,6 @@ export const PERSONAL_BUDGET = {
   highWarning: 'Nhiều vậy coi chừng bị "hỏi thăm", cẩn thận nha!',
 };
 
-export const COST_CONFIRM_ITEMS: ChecklistItem[] = [
-  ...COST_ROWS.map((row) => ({
-    id: row.id,
-    label: row.label,
-    note: row.note,
-  })),
-  { id: PERSONAL_BUDGET.id, label: PERSONAL_BUDGET.label },
-];
-
 export const PACKING_SECTION_A: ChecklistSection = {
   sectionId: 'packing-at-home',
   title: 'Xếp Vali Tại Nhà',
@@ -222,11 +213,12 @@ export const BANNED_ITEMS: BannedItem[] = [
   { id: 'ban-09', label: 'Cấm tuyệt đối các hành vi "đi 2 về 1, đi 2 về 3"' },
 ];
 
-export const BANNED_ACK_ITEMS: ChecklistItem[] = BANNED_ITEMS.map((item) => ({
-  id: item.id,
-  label: item.label,
-  note: item.note,
-}));
+export const BANNED_ACK_ITEMS: ChecklistItem[] = [
+  {
+    id: 'banned-agree',
+    label: 'Tôi đã đọc và sẽ không mang theo bất kỳ thứ nào bị cấm ở trên.',
+  },
+];
 
 export const SURVIVAL_TIPS = [
   'Giặt sạch quân phục ngay khi mới được phát.',

@@ -2,6 +2,8 @@ import { Ban } from 'lucide-react';
 import { BANNED_ITEMS } from '../../data/militaryData';
 import type { UseChecklistStorageResult } from '../../hooks/useChecklistStorage';
 
+const AGREE_ID = 'banned-agree';
+
 interface Slide5BannedItemsProps {
   checklist: UseChecklistStorageResult;
 }
@@ -9,8 +11,7 @@ interface Slide5BannedItemsProps {
 export function Slide5BannedItems({ checklist }: Slide5BannedItemsProps) {
   const mainItems = BANNED_ITEMS.slice(0, -1);
   const easterEggItem = BANNED_ITEMS[BANNED_ITEMS.length - 1];
-  const allMainChecked = mainItems.every((item) => checklist.isChecked(item.id));
-  const easterEggChecked = checklist.isChecked(easterEggItem.id);
+  const agreed = checklist.isChecked(AGREE_ID);
 
   return (
     <div className="mx-auto flex h-full max-w-2xl flex-col gap-5">
@@ -23,69 +24,41 @@ export function Slide5BannedItems({ checklist }: Slide5BannedItemsProps) {
         </h1>
       </div>
 
-      <p className="text-sm text-charcoal/60">
-        Đánh dấu từng mục để xác nhận đã đọc và sẽ không mang theo - cần tích hết để sang trang
-        tiếp theo.
-      </p>
-
-      <ul className="flex flex-col divide-y divide-danger/10 rounded-xl border-2 border-danger/30 bg-danger/5 p-2">
-        {mainItems.map((item) => {
-          const checked = checklist.isChecked(item.id);
-          return (
-            <li key={item.id}>
-              <label
-                htmlFor={item.id}
-                className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-danger/10"
-              >
-                <input
-                  id={item.id}
-                  type="checkbox"
-                  checked={checked}
-                  onChange={() => checklist.toggle(item.id)}
-                  className="mt-0.5 h-6 w-6 shrink-0 accent-danger"
-                />
-                <span
-                  className={
-                    checked
-                      ? 'min-w-0 flex-1 break-words text-charcoal/50 line-through'
-                      : 'min-w-0 flex-1 break-words text-charcoal'
-                  }
-                >
-                  <span className="mr-1 font-bold text-danger">❌</span>
-                  {item.label}
-                  {item.note && (
-                    <span className="mt-0.5 block text-sm text-charcoal/60">{item.note}</span>
-                  )}
-                </span>
-              </label>
-            </li>
-          );
-        })}
+      <ul className="flex flex-col gap-3 rounded-xl border-2 border-danger/30 bg-danger/5 p-4">
+        {mainItems.map((item) => (
+          <li key={item.id} className="flex items-start gap-3">
+            <span className="mt-0.5 shrink-0 font-bold text-danger">❌</span>
+            <span className="min-w-0 break-words text-charcoal">
+              {item.label}
+              {item.note && (
+                <span className="mt-0.5 block text-sm text-charcoal/60">{item.note}</span>
+              )}
+            </span>
+          </li>
+        ))}
       </ul>
 
-      {allMainChecked && (
-        <label
-          htmlFor={easterEggItem.id}
-          className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-xl border-2 border-violet-300 bg-violet-50 px-3 py-2 transition-colors hover:bg-violet-100"
-        >
-          <input
-            id={easterEggItem.id}
-            type="checkbox"
-            checked={easterEggChecked}
-            onChange={() => checklist.toggle(easterEggItem.id)}
-            className="mt-0.5 h-6 w-6 shrink-0 accent-violet-500"
-          />
-          <span
-            className={
-              easterEggChecked
-                ? 'min-w-0 flex-1 break-words text-violet-400 line-through'
-                : 'min-w-0 flex-1 break-words text-violet-700'
-            }
-          >
-            <span className="mr-1">😏</span>
-            {easterEggItem.label}
-          </span>
-        </label>
+      <label
+        htmlFor={AGREE_ID}
+        className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-xl border-2 border-military/25 bg-white px-4 py-3 transition-colors hover:bg-military/5"
+      >
+        <input
+          id={AGREE_ID}
+          type="checkbox"
+          checked={agreed}
+          onChange={() => checklist.toggle(AGREE_ID)}
+          className="mt-0.5 h-6 w-6 shrink-0 accent-military"
+        />
+        <span className="font-medium text-charcoal">
+          Tôi đã đọc và sẽ không mang theo bất kỳ thứ nào bị cấm ở trên.
+        </span>
+      </label>
+
+      {agreed && (
+        <div className="flex items-start gap-3 rounded-xl border-2 border-violet-300 bg-violet-50 px-4 py-3">
+          <span className="mt-0.5 shrink-0">😏</span>
+          <p className="min-w-0 break-words text-violet-700">{easterEggItem.label}</p>
+        </div>
       )}
     </div>
   );

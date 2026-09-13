@@ -5,17 +5,11 @@ import {
   STUDENT_PORTAL_GUIDANCE,
   STUDENT_PORTAL_URL,
 } from '../../data/militaryData';
-import type { UseChecklistStorageResult } from '../../hooks/useChecklistStorage';
 import { useBudgetSlider } from '../../hooks/useBudgetSlider';
 import { BudgetSlider } from '../BudgetSlider';
 import { CostTable } from '../CostTable';
-import { ProgressBar } from '../ProgressBar';
 
-interface Slide2CostInfoProps {
-  checklist: UseChecklistStorageResult;
-}
-
-export function Slide2CostInfo({ checklist }: Slide2CostInfoProps) {
+export function Slide2CostInfo() {
   const { amount, setLiveAmount, commitAmount } = useBudgetSlider();
   const total = FIXED_COST_TOTAL + amount;
 
@@ -48,28 +42,8 @@ export function Slide2CostInfo({ checklist }: Slide2CostInfoProps) {
           <Wallet size={20} className="text-military" />
           <h2 className="font-semibold text-charcoal">Dự Toán Chi Phí</h2>
         </div>
-        <ProgressBar
-          label="Đã xác nhận đọc kỹ dự toán"
-          checkedCount={checklist.progress.checkedCount}
-          totalCount={checklist.progress.totalCount}
-          percent={checklist.progress.percent}
-          completeMessage="Đã xem hết rồi, yên tâm chuẩn bị tiền mặt thôi!"
-        />
-        <p className="text-sm text-charcoal/60">
-          Đánh dấu từng khoản mục để xác nhận đã xem qua trước khi sang trang tiếp theo.
-        </p>
-        <CostTable
-          rows={COST_ROWS}
-          checkedMap={checklist.checkedMap}
-          onToggle={checklist.toggle}
-        />
-        <BudgetSlider
-          amount={amount}
-          checked={checklist.isChecked('cost-personal')}
-          onToggleConfirm={() => checklist.toggle('cost-personal')}
-          onLiveChange={setLiveAmount}
-          onCommit={commitAmount}
-        />
+        <CostTable rows={COST_ROWS} />
+        <BudgetSlider amount={amount} onLiveChange={setLiveAmount} onCommit={commitAmount} />
         <div className="rounded-full border-2 border-fpt bg-fpt/10 px-4 py-2 text-center font-bold text-fpt md:text-left">
           Tổng dự toán tiền mặt cần mang: {total.toLocaleString('vi-VN')}₫
         </div>
