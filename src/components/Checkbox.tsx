@@ -10,7 +10,7 @@ export function Checkbox({ id, checked, onChange, label, note }: CheckboxProps) 
   return (
     <label
       htmlFor={id}
-      className="flex min-h-[44px] w-full cursor-pointer items-start gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-military/5 active:bg-military/10"
+      className="flex min-h-[44px] w-full cursor-pointer items-start gap-3 rounded-lg border-b border-military/10 px-2 py-2 transition-colors last:border-b-0 hover:bg-military/5 active:bg-military/10 md:[&:nth-last-child(-n+2)]:border-b-0"
     >
       <input
         id={id}

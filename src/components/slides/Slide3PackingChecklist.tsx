@@ -27,7 +27,7 @@ export function Slide3PackingChecklist({
   const totalCash = FIXED_COST_TOTAL + amount;
 
   return (
-    <div className="mx-auto flex h-full max-w-2xl flex-col gap-6">
+    <div className="mx-auto flex h-full max-w-2xl flex-col gap-6 md:max-w-4xl">
       <div className="flex items-center gap-3">
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-military/10 text-military">
           <ClipboardList size={24} />
@@ -52,7 +52,7 @@ export function Slide3PackingChecklist({
         <p className="mb-2 text-sm text-charcoal/60">
           Cần tích hết (trừ 2 mục có ghi "có thể bỏ qua") để sang trang tiếp theo.
         </p>
-        <div className="flex flex-col divide-y divide-military/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-6">
           {PACKING_SECTION_A.items.map((item) => (
             <Checkbox
               key={item.id}
@@ -83,7 +83,7 @@ export function Slide3PackingChecklist({
         <h3 className="mb-1 mt-3 text-sm font-semibold text-charcoal/80">
           {BORROWED_GEAR_SECTION.title}
         </h3>
-        <div className="flex flex-col divide-y divide-fpt/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-6">
           {BORROWED_GEAR_SECTION.items.map((item) => (
             <Checkbox
               key={item.id}
@@ -99,7 +99,7 @@ export function Slide3PackingChecklist({
         <h3 className="mb-1 mt-4 text-sm font-semibold text-charcoal/80">
           {FIRST_DAY_PURCHASE_SECTION.title}
         </h3>
-        <div className="flex flex-col divide-y divide-fpt/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-6">
           {FIRST_DAY_PURCHASE_SECTION.items.map((item) => (
             <Checkbox
               key={item.id}

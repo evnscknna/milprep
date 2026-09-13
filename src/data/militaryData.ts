@@ -87,16 +87,16 @@ export const PACKING_SECTION_A: ChecklistSection = {
     { id: 'home-02', label: 'Thẻ sinh viên, CCCD, BHYT (giấy tờ tùy thân)' },
     { id: 'home-03', label: 'Tiền mặt (~4.200.000₫ tự bảo quản)' },
     { id: 'home-04', label: 'Vali cá nhân (size 28-30) + 1 balo nhỏ' },
+    { id: 'home-08', label: 'Giày bata (Thượng Đình v.v., nên dùng đôi cũ để đi xong bỏ)' },
+    { id: 'home-09', label: 'Bột giặt/nước giặt' },
+    { id: 'home-10', label: 'Thau giặt đồ' },
+    { id: 'home-11', label: 'Bàn chải, kem đánh răng' },
+    { id: 'home-12', label: 'Khăn tắm mỏng' },
+    { id: 'home-13', label: 'Chai chiết dầu gội/sữa tắm mini' },
     {
-      id: 'home-05',
-      label: 'Kim chỉ hoặc bút lông/bút xóa để đánh dấu đồ đạc',
-      note: 'Có thể bỏ qua, không bắt buộc để đi tiếp',
-      skippableInGate: true,
-    },
-    {
-      id: 'home-06',
-      label: 'Thắt lưng hoặc ghim cài dạng lớn (để chỉnh quân phục rộng)',
-      note: 'Có thể bỏ qua, không bắt buộc để đi tiếp',
+      id: 'home-14',
+      label: 'Băng vệ sinh/dung dịch vệ sinh (nữ)',
+      note: 'Bỏ qua nếu không cần, không bắt buộc để đi tiếp',
       skippableInGate: true,
     },
     { id: 'home-07', label: 'Tinh thần lạc quan, chịu khó' },
@@ -130,13 +130,13 @@ export const GEAR_CATEGORIES: GearCategory[] = [
     title: 'Trang Phục',
     icon: 'Shirt',
     items: [
-      { id: 'gear-tp-01', label: 'Giày bata cũ (Thượng Đình v.v., đi xong bỏ)' },
       { id: 'gear-tp-02', label: 'Dép/sandals' },
+      { id: 'gear-tp-09', label: 'Kim chỉ hoặc bút lông/bút xóa để đánh dấu đồ đạc' },
+      { id: 'gear-tp-10', label: 'Thắt lưng hoặc ghim cài dạng lớn (để chỉnh quân phục rộng)' },
       { id: 'gear-tp-03', label: 'Đồ mỏng mau khô (tránh quần nỉ ẩm mốc)' },
       { id: 'gear-tp-04', label: 'Đồ lót giấy 1 lần' },
       { id: 'gear-tp-05', label: '1-2 quần đùi ngủ' },
       { id: 'gear-tp-06', label: 'Áo thun mỏng lót trong quân phục' },
-      { id: 'gear-tp-07', label: 'Khăn tắm mỏng' },
       { id: 'gear-tp-08', label: 'Túi nilon đựng đồ bẩn' },
     ],
   },
@@ -148,10 +148,7 @@ export const GEAR_CATEGORIES: GearCategory[] = [
       { id: 'gear-vs-01', label: 'Kem chống nắng (mặt + body)', note: 'Cực kỳ cần thiết' },
       { id: 'gear-vs-02', label: 'Bông tẩy trang' },
       { id: 'gear-vs-03', label: 'Khăn giấy khô & ướt (mang nhiều)' },
-      { id: 'gear-vs-04', label: 'Chai chiết dầu gội/sữa tắm mini' },
-      { id: 'gear-vs-05', label: 'Bàn chải, kem đánh răng' },
       { id: 'gear-vs-06', label: 'Dao cạo râu (nam)' },
-      { id: 'gear-vs-07', label: 'Băng vệ sinh/dung dịch vệ sinh (nữ)' },
       { id: 'gear-vs-08', label: 'Gương soi' },
       { id: 'gear-vs-09', label: 'Bodymist' },
       { id: 'gear-vs-10', label: 'Dù che nắng mưa' },
@@ -224,6 +221,8 @@ export const SURVIVAL_TIPS = [
   'Giặt sạch quân phục ngay khi mới được phát.',
   'Dùng bút xóa/bút lông ghi rõ họ tên/tiểu đội lên tất cả đồ đạc cá nhân (mắc áo, bình nước, quân phục, mũ) để tránh mất mát.',
 ];
+
+export const GOOD_LUCK_MESSAGE = 'Chúc bạn may mắn và có một khóa học thật đáng nhớ!';
 
 export const ENCOURAGEMENT_SLOGAN =
   'Giữ vững sự LẠC QUAN và tinh thần chịu gian, chịu khó!';

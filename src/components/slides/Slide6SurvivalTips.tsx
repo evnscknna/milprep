@@ -1,5 +1,5 @@
 import { PartyPopper, Sparkles } from 'lucide-react';
-import { ENCOURAGEMENT_SLOGAN, SURVIVAL_TIPS } from '../../data/militaryData';
+import { ENCOURAGEMENT_SLOGAN, GOOD_LUCK_MESSAGE, SURVIVAL_TIPS } from '../../data/militaryData';
 
 export function Slide6SurvivalTips() {
   return (
@@ -22,6 +22,7 @@ export function Slide6SurvivalTips() {
 
       <div className="flex flex-col items-center gap-3 rounded-xl bg-military px-6 py-8 text-center text-white shadow-md">
         <PartyPopper size={32} />
+        <p className="font-medium text-white/80">{GOOD_LUCK_MESSAGE}</p>
         <p className="text-lg font-bold sm:text-xl">{ENCOURAGEMENT_SLOGAN}</p>
       </div>
     </div>
